@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import {inter} from "@/public/fonts";
+import localFont from 'next/font/local';
+
+export const inter = localFont({
+  src: "../public/fonts/Inter-VariableFont_opsz,wght.ttf", 
+  variable: "--font-inter",
+  weight: "100 900"
+});
 
 export const metadata: Metadata = {
   title: "ValidaSEINFRA",
@@ -11,7 +17,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-br"
-      className={`${inter.variable} h-full`}
+      className={`${inter.variable} font-sans h-full`}
     >
       <body className="min-h-full flex flex-col antialiased">{children}</body>
     </html>
