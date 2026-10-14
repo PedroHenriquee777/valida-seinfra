@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import localFont from 'next/font/local';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+export const inter = localFont({
+  src: "../public/fonts/Inter-VariableFont_opsz,wght.ttf", 
+  variable: "--font-inter",
+  weight: "100 900"
 });
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 
 export const metadata: Metadata = {
   title: "ValidaSEINFRA",
@@ -22,10 +17,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-br"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} font-sans h-full`}
     >
-      
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col antialiased">{children}</body>
     </html>
   );
 }
