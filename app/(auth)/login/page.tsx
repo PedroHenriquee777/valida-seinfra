@@ -36,6 +36,39 @@ export default function PaginaInicial () {
             Acompanhe processos, envie documentos e valide certidões em um único lugar - com histórico completo de cada obra.
           </p>
         </aside>
+
+        { /* formulario */ }
+        <div className="flex flex-col justify-center bg-background p-6 sm:p-10 md:p-8 lg:p-14">
+          <h1 className="text-3xl font-bold text-primary">
+            Acessar plataforma
+          </h1>
+
+          <p className="mt-5 text-lg font-semibold text-primary">
+            Preencha com os seus dados
+          </p>
+          
+          <form className="mt-5 space-y-5">
+            { /* seleçao de perfil */ }
+            <Tabs defaultValue = "setor">
+              <TabsList className = "grid h-11 w-full grid-cols-2 overflow-hidden rounded-lg border border-border bg-card p-0">
+                <TabsTrigger value="empresa" className={tabClass}>
+                  Empresa
+                </TabsTrigger>
+                
+                <TabsTrigger value="setor" className={tabClass}>
+                  Administrador e Setores
+                </TabsTrigger>
+                  
+              </TabsList>
+            </Tabs>
+          </form>
+
+
+        </div>
+
+
+
+
       </section>
    </main>
   )
