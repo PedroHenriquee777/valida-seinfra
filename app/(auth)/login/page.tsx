@@ -119,6 +119,28 @@ export default function PaginaInicial () {
               da plataforma.
             </p>
 
+          {/* lembrar de mim e recuperaçao de senha */}
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <Checkbox id="lembrar" />
+
+                <Label
+                  htmlFor="lembrar"
+                  className="text-sm font-normal text-muted-foreground"
+                >
+                  Lembrar de mim
+                </Label>
+              </div>
+
+              <Link
+                href="/esqueci-senha"
+                className="text-sm font-semibold text-blue-600 hover:underline"
+              >
+                Esqueci minha senha
+              </Link>
+            </div>
+
+
           </form>
 
 
