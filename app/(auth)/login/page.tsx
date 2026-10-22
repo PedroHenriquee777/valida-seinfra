@@ -21,7 +21,7 @@ export default function PaginaInicial () {
    <main className="flex min-h-dvh items-center justify-center bg-background p-3 font-sans">
       <section className="grid w-full max-w-6xl overflow-hidden rounded-2xl shadow-xl md:min-h-[calc(100dvh-1.5rem)] md:grid-cols-2">
         {/* painel*/}
-        <aside className="flex flex-col justify-center bg-gradient-to-b from-sidebar to-sidebar-primary p-6 sm:p-10 md:p-20">
+        <aside className="flex flex-col justify-center bg-gradient-to-b from-sidebar to-sidebar-gradient-end p-6 sm:p-10 md:p-20">
           <div className="flex items-center gap-3">
             { /* logo provisória */ }
             <div className="flex size-11 items-center justify-center rounded-lg border border-white/80 bg-sidebar-primary">
