@@ -12,12 +12,19 @@ export const metadata: Metadata = {
   title: "Acessar plataforma | ValidaSEINFRA"
 }
 
+const tabClass =
+  "h-full rounded-none text-sm font-semibold text-muted-foreground shadow-none data-[state=active]:bg-muted data-[state=active]:text-primary data-[state=active]:shadow-none";;
 
 
 export default function PaginaInicial () {
   return (
-   <div className="w-full h-screen bg-blue-500 flex justify-center items-center">
-      <button className="h-30 w-50 text-white bg-amber-500 border-4 rounded-[25]">Bidding</button>
-   </div>
+   <main className="flex min-h-dvh items-center justify-center bg-background p-3 font-sans">
+      <section className="grid w-full max-w-6xl overflow-hidden rounded-2xl shadow-xl md:min-h-[calc(100dvh-1.5rem)] md:grid-cols-2">
+        <aside className="hidden flex-col justify-center bg-gradient rounded-lg border border-white/80 bg-sidebar-primary">
+
+        </aside>
+
+      </section>
+   </main>
   )
 } 
