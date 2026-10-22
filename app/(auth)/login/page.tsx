@@ -62,7 +62,7 @@ export default function PaginaInicial () {
               </TabsList>
             </Tabs>
 
-            { /* email */ }
+            { /* campo email */ }
             <div className="space-y-2">
               <label htmlFor="email" className="text-sm font-semibold text-muted-foreground">
                 E-mail corporativo
@@ -79,6 +79,28 @@ export default function PaginaInicial () {
                 />
               </div>
             </div>
+          { /* campo senha */ }
+          <div className="space-y-2">
+            <label
+              htmlFor="senha"
+              className="text-sm font-semibold text-muted-foreground"
+            >
+              Senha
+            </label>
+            
+            <div className="relative">
+              <Lock className="pointer-none-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"/>
+
+              <Input
+                id="senha"
+                type="password"
+                autoComplete="current-password"
+                placeholder="Sua senha"
+                className="h-[52px] rounded-lg border-input bg-card pl-9 text-foreground placeholder:text-muted-foreground"
+              />
+            </div>
+          </div>
+          
 
           </form>
 
