@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 }
 
 const tabClass =
-  "h-full rounded-none text-sm font-semibold text-muted-foreground shadow-none data-[state=active]:bg-muted data-[state=active]:text-primary data-[state=active]:shadow-none";;
+  "h-full rounded-none text-sm font-semibold text-muted-foreground shadow-none data-[state=active]:bg-muted data-[state=active]:text-primary data-[state=active]:shadow-none";
 
 
 export default function PaginaInicial () {
