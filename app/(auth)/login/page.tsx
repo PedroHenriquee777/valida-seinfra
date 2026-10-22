@@ -140,15 +140,17 @@ export default function PaginaInicial () {
               </Link>
             </div>
 
-
+            {/* botão visual, ainda sem envio real */}
+            <div className="flex justify-end">
+              <button
+                type="button"
+                className="h-11 w-full rounded-lg bg-blue-500 text-white hover:bg-blue:600 sm:w-44"
+              >
+                Continuar
+              </button>
+            </div>
           </form>
-
-
         </div>
-
-
-
-
       </section>
    </main>
   )
