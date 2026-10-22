@@ -8,6 +8,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+export const metadata: Metadata = {
+  title: "Acessar plataforma | ValidaSEINFRA"
+}
+
+
 
 export default function PaginaInicial () {
   return (
