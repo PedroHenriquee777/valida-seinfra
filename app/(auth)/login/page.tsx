@@ -100,7 +100,24 @@ export default function PaginaInicial () {
               />
             </div>
           </div>
-          
+          { /* termos de uso */ }
+            <p className="rounded-lg bg-muted px-3 py-4 text-xs font-semibold leading-relaxed text-muted-foreground">
+              Ao continuar confirmo que concordo com os{" "}
+              <Link
+                href="/termos"
+                className="text-blue-600 underline"
+              >
+                Termos de Uso
+              </Link>{" "}
+              e a Política de{" "}
+              <Link
+                href="/privacidade"
+                className="text-blue-600 underline"
+              >
+                Segurança e Privacidade
+              </Link>{" "}
+              da plataforma.
+            </p>
 
           </form>
 
