@@ -61,6 +61,25 @@ export default function PaginaInicial () {
                   
               </TabsList>
             </Tabs>
+
+            { /* email */ }
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-semibold text-muted-foreground">
+                E-mail corporativo
+              </label>
+              <div className="relative">
+                <Mail className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"/>
+                
+                <Input
+                  id="email"
+                  type="email"
+                  autoComplete="email"
+                  placeholder="seu.nome@gmail.com"
+                  className="h-[52px] rounded-lg border-input bg-card pl-9 text-foreground placeholder:text-muted-foreground"
+                />
+              </div>
+            </div>
+
           </form>
 
 
