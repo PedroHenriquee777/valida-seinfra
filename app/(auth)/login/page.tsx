@@ -32,7 +32,7 @@ export default function PaginaInicial () {
               ValidaSEINFRA
             </span>
           </div>
-          <h2 className="mt-10 max-w-md text-3xl font-bold leading-tight text-white">Gestão documental de obras,do envio à aprovação.</h2>
+          <h2 className="mt-10 max-w-md text-3xl font-bold leading-tight text-white">Gestão documental de obras, do envio à aprovação.</h2>
           <p className="mt-3 max-w-md text-lg leading-snug text-sidebar-foreground">
             Acompanhe processos, envie documentos e valide certidões em um único lugar - com histórico completo de cada obra.
           </p>
