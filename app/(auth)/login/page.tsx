@@ -90,7 +90,7 @@ export default function PaginaInicial () {
             </label>
             
             <div className="relative">
-              <Lock className="pointer-none-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"/>
+              <Lock className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"/>
 
               <Input
                 id="senha"
