@@ -18,7 +18,7 @@ const tabClass =
 
 export default function PaginaInicial () {
   return (
-   <main className="flex min-h-dvh items-center justify-center bg-background p-3 font-sans">
+   <main className="flex min-h-dvh items-center justify-center bg-background p-3">
       <section className="grid w-full max-w-6xl overflow-hidden rounded-2xl shadow-xl md:min-h-[calc(100dvh-1.5rem)] md:grid-cols-2">
         {/* painel*/}
         <aside className="flex flex-col justify-center bg-gradient-to-b from-sidebar to-sidebar-gradient-end p-6 sm:p-10 md:p-20">
