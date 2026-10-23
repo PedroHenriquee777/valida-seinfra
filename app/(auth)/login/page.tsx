@@ -76,7 +76,7 @@ export default function PaginaInicial () {
                   type="email"
                   autoComplete="email"
                   placeholder="seu.nome@gmail.com"
-                  className="h-[52px] rounded-lg border-input bg-card pl-9 text-foreground placeholder:text-muted-foreground"
+                  className="h-13 rounded-lg border-input bg-card pl-9 text-foreground placeholder:text-muted-foreground"
                 />
               </div>
             </div>
