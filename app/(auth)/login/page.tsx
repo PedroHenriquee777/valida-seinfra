@@ -47,7 +47,7 @@ export default function PaginaInicial () {
           <p className="mt-5 text-lg font-semibold text-primary">
             Preencha com os seus dados
           </p>
-          z
+
           <form className="mt-5 space-y-5">
             { /* seleçao de perfil */ }
             <Tabs defaultValue = "setor">
