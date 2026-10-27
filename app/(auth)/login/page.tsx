@@ -32,6 +32,20 @@ export default function PaginaInicial () {
             Acompanhe processos, envie documentos e valide certidões em um único lugar - com histórico completo de cada obra.
           </p>
         </aside>
+
+        <div className="flex flex-col justif-center bg-background px-6 py-10 sm:px-10 md:px-8 lg:px-14 xl:px-20">
+          <div className="mx-auto w-full max-w-xl">
+            <h1 className="text-3xl font-bold text-primary">
+              Acessar plataform
+            </h1>
+
+            <p className="mt-4 text-lg font-semibold text-primary">
+              Preencha com os seus dados
+            </p>
+
+            <LoginForm/>
+          </div>
+        </div>
       </section>
     </main>
   )
