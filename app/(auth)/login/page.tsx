@@ -29,7 +29,7 @@ export default function PaginaInicial () {
           
             </div>
           
-            <h2 className="mt-10 max-w-md text-3xl font-bold leading-tight text-white">
+            <h2 className="mt-8 max-w-md text-3xl font-bold leading-tight text-white">
               Gestão documental de obras, do envio à aprovação
             </h2>
 
