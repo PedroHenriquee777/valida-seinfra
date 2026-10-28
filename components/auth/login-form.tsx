@@ -10,6 +10,9 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 
+const [perfil, setPerfil] = useState<"empresa" | "setor">("empresa");
+const isEmpresa = perfil === "empresa";
+
 export function LoginForm() {
   return (
     <form
