@@ -7,7 +7,7 @@ type AuthFieldProps = {
     id: string;
     name: string;
     label: string;
-    type: "email" | "password";
+    type: "text" | "email" | "password";
     placeholder: string;
     icon: LucideIcon;
     autoComplete?: string;
