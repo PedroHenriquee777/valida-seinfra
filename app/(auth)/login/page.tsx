@@ -22,12 +22,12 @@ export default function PaginaInicial () {
               priority
               className="h-auto w-full max-w-15 object-contain"
             />
-          </div>
-          
           <span className="text-3xl font-bold text-white">
             ValidaSEINFRA
           </span>
-
+          
+          </div>
+          
           <h2 className="mt-10 max-w-md text-3xl font-bold leading-tight text-white">
             Gestão documental de obras, do envio à aprovação
           </h2>
