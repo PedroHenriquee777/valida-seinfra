@@ -15,12 +15,12 @@ export default function PaginaInicial () {
         <aside className="flex flex-col justify-center bg-gradient-to-b from-sidebar to-sidebar-gradient-end p-6 sm:p-10 md:p-12 lg:p-20">
           <div className="flex items-center gap-3">
             <Image
-              src=""
-              alt=""
+              src="/assets/images/logo-validaseinfra.png"
+              alt="Logo do ValidaSEINFRA"
               width={220}
               height={48}
               priority
-              className="h-auto w-full max-w-56"
+              className="h-auto w-full max-w-56 object-contain"
             />
           </div>
 
