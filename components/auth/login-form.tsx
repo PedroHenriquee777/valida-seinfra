@@ -23,7 +23,7 @@ export function LoginForm() {
           name="email"
           label="E-mail corporativo"
           type="email"
-          placeholder="@empresa.com"
+          placeholder="seu.nome@gmail.com"
           icon={Mail}
           autoComplete="email"
         />
