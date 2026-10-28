@@ -25,25 +25,21 @@ export function LoginForm() {
       />
 
       <div className="flex flex-col gap-5">
-        <AuthField
-          id="email"
-          name="email"
-          label="E-mail corporativo"
-          type="email"
-          placeholder="seu.nome@gmail.com"
-          icon={Mail}
-          autoComplete="email"
-        />
-
-        <AuthField
-          id="senha"
-          name="password"
-          label="Senha"
-          type="password"
-          placeholder="Sua senha"
-          icon={Lock}
-          autoComplete="current-password"
-        />
+        
+    <AuthField
+      id={isEmpresa ? "cnpj" : "email"}
+      name={isEmpresa ? "cnpj" : "email"}
+      label={isEmpresa ? "CNPJ" : "E-mail corporativo"}
+      type={isEmpresa ? "text" : "email"}
+      placeholder={
+        isEmpresa
+          ? "00.000.000/0000-00"
+          : "seu.nome@gmail.com"
+        }
+      icon={Mail}
+        autoComplete={isEmpresa ? "off" : "email"}
+      />
+      
       </div>
 
       <p className="rounded-lg bg-muted px-3 py-4 text-xs font-semibold leading-relaxed text-muted-foreground">
