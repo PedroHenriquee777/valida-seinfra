@@ -19,7 +19,10 @@ export function LoginForm() {
       id="login-form"
       className="mt-8 flex flex-col gap-6"
     >
-      <ProfileTabs />
+      <ProfileTabs
+        perfil={perfil}
+        setPerfil={setPerfil}
+      />
 
       <div className="flex flex-col gap-5">
         <AuthField
