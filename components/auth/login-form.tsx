@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Lock, Mail } from "lucide-react";
+import { useState } from "react";
 
 import { AuthField } from "@/components/auth/auth-field";
 import { ProfileTabs } from "@/components/auth/profile-tabs";
