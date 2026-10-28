@@ -20,7 +20,7 @@ export default function PaginaInicial () {
               width={220}
               height={48}
               priority
-              className="h-auto w-full max-w-56 object-contain"
+              className="h-auto w-full max-w-15 object-contain"
             />
           </div>
           
