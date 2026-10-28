@@ -39,7 +39,7 @@ export function LoginForm() {
       icon={Mail}
         autoComplete={isEmpresa ? "off" : "email"}
       />
-      
+
       </div>
 
       <p className="rounded-lg bg-muted px-3 py-4 text-xs font-semibold leading-relaxed text-muted-foreground">
@@ -83,7 +83,7 @@ export function LoginForm() {
       <div className="flex justify-end">
         <Button
           type="button"
-          className="h-11 w-full rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 sm:w-44"
+          className="h-11 w-full rounded-lg bg-blue-600 text-primary-foreground hover:bg-blue-600/90 sm:w-44"
         >
           Continuar
         </Button>
