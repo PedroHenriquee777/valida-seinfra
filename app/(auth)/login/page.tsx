@@ -18,10 +18,10 @@ export default function PaginaInicial () {
               <Image
                 src="/assets/images/logo.png"
                 alt="Logo do ValidaSEINFRA"
-                width={220}
-                height={48}
+                width={44}
+                height={44}
                 priority
-                className="h-auto w-full max-w-15 object-contain"
+                className="size-11 shrink-0 object-contain"
               />
             <span className="text-3xl font-bold text-white">
               ValidaSEINFRA
