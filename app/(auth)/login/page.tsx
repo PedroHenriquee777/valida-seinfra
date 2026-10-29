@@ -23,17 +23,17 @@ export default function PaginaInicial () {
                 priority
                 className="size-11 shrink-0 object-contain"
               />
-            <span className="text-3xl font-bold text-white">
+            <span className="text-2xl font-bold text-white sm:text-3xl">
               ValidaSEINFRA
             </span>
           
             </div>
           
-            <h2 className="mt-8 max-w-md text-3xl font-bold leading-tight text-white">
+            <h2 className="mt-8 hidden max-w-md text-3xl font-bold leading-tight text-white md:block">
               Gestão documental de obras, do envio à aprovação
             </h2>
 
-            <p className="mt-3 max-w-md text-lg leading-snug text-sidebar-foreground">
+            <p className="mt-3 hidden max-w-md text-lg leading-snug text-sidebar-foreground md:block">
               Acompanhe processos, envie documentos e valide certidões em um único lugar - com histórico completo de cada obra.
             </p>
           </div>
