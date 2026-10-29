@@ -43,7 +43,7 @@ export function AuthField({
           type={type}
           autoComplete={autoComplete}
           placeholder={placeholder}
-          className="h-13 rounded-lg border-input bg-card pl-9 text-foreground placeholder:text-muted-foreground"
+          className="h-13 rounded-lg border-input !bg-primary-foreground pl-9 text-foreground placeholder:text-muted-foreground"
         />
       </div>
     </div>
