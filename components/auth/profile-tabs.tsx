@@ -11,7 +11,7 @@ type ProfileTabsProps = {
 };
 
 const tabClass =
-  "h-full cursor-pointer rounded-none text-sm font-semibold text-muted-foreground data-[state=active]:bg-muted data-[state=active]:text-primary";
+  "h-full min-w-0 cursor-pointer whitespace-normal break-words px-1 text-xs font-semibold leading-tight text-center text-muted-foreground data-[state=active]:bg-muted data-[state=active]:text-primary sm:text-sm";
 
 export function ProfileTabs({
   perfil,
