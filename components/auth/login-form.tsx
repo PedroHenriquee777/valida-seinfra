@@ -34,7 +34,7 @@ export function LoginForm() {
       placeholder={
         isEmpresa
           ? "00.000.000/0000-00"
-          : "seu.nome@gmail.com"
+          : "seu.nome@empresa"
         }
       icon={Mail}
         autoComplete={isEmpresa ? "off" : "email"}
