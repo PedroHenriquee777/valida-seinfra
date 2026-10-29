@@ -26,7 +26,7 @@ export function ProfileTabs({
         }
       }}
     >
-      <TabsList className="grid h-11 w-full grid-cols-2 overflow-hidden rounded-lg border border-border bg-card p-0">
+      <TabsList className="grid h-auto min-h-11 w-full grid-cols-2 overflow-hidden rounded-lg border border-border bg-card p-0">  
         <TabsTrigger value="empresa" className={tabClass}>
           Empresa
         </TabsTrigger>
