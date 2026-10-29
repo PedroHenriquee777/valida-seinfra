@@ -39,7 +39,7 @@ export function LoginForm() {
       icon={Mail}
         autoComplete={isEmpresa ? "off" : "email"}
       />
-      
+
     <AuthField
       id="senha"
       name="password"
@@ -52,7 +52,7 @@ export function LoginForm() {
 
       </div>
 
-      <p className="rounded-lg bg-muted px-3 py-4 text-xs font-semibold leading-relaxed text-muted-foreground">
+      <p className="rounded-lg bg-gray px-3 py-4 text-xs font-semibold leading-relaxed text-muted-foreground">
         Ao continuar, confirmo que concordo com os{" "}
         <Link
           href="/termos"
