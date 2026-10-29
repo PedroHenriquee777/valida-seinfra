@@ -39,6 +39,16 @@ export function LoginForm() {
       icon={Mail}
         autoComplete={isEmpresa ? "off" : "email"}
       />
+      
+    <AuthField
+      id="senha"
+      name="password"
+      label="Senha"
+      type="password"
+      placeholder="Sua senha"
+      icon={Lock}
+      autoComplete="current-password"
+      />
 
       </div>
 
