@@ -93,7 +93,7 @@ export function LoginForm() {
       <div className="flex justify-end">
         <Button
           type="button"
-          className="h-11 w-full rounded-lg bg-blue-600 text-primary-foreground hover:bg-blue-600/90 sm:w-44"
+          className="h-11 w-full cursor-pointer rounded-lg bg-blue-600 text-primary-foreground hover:bg-blue-600/90 sm:w-44"
         >
           Continuar
         </Button>
