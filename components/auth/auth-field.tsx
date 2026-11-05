@@ -14,14 +14,14 @@ type AuthFieldProps = Omit<ComponentProps<"input">, "id" | "type"> & {
 
 export function AuthField({
     id,
-    name,
     label,
-    type,
-    placeholder,
     icon: Icon,
-    autoComplete,   
+    error,
+    ...inputsProps
 }: AuthFieldProps) {
-    return (
+  const errorId = `${id}-error`;
+
+  return (
     <div className="space-y-2">
       <Label
         htmlFor={id}
@@ -38,16 +38,20 @@ export function AuthField({
 
         <Input
           id={id}
-          name={name}
-          type={type}
-          autoComplete={autoComplete}
-          placeholder={placeholder}
+          aria-invalid={Boolean(error)}
+          aria-describedby={error ? errorId : undefined}
+          {...inputProps}
           className="h-13 rounded-lg border-input !bg-primary-foreground pl-9 text-foreground placeholder:text-muted-foreground"
         />
       </div>
-    </div>
-    );
-}
 
+      {error && (
+        <p id={errorId} role="alert" className="text-sm font-medium text-destructive">
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
 
 
