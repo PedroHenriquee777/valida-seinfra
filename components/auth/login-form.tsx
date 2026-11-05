@@ -55,66 +55,71 @@ export function LoginForm() {
     });
   }
 
-
-
-
-
-
-
-
-
-
   return(
-    <form
+ <form
       id="login-form"
+      noValidate
+      onSubmit={handleSubmit(onSubmit)}
       className="mt-8 flex flex-col gap-6"
     >
-      <ProfileTabs
-        perfil={perfil}
-        setPerfil={setPerfil}
-      />
+      <ProfileTabs perfil={perfil} setPerfil={handleChangePerfil} />
 
       <div className="flex flex-col gap-5">
-        
-    <AuthField
-      id={isEmpresa ? "cnpj" : "email"}
-      name={isEmpresa ? "cnpj" : "email"}
-      label={isEmpresa ? "CNPJ" : "E-mail corporativo"}
-      type={isEmpresa ? "text" : "email"}
-      placeholder={
-        isEmpresa
-          ? "00.000.000/0000-00"
-          : "seu.nome@empresa"
-        }
-      icon={Mail}
-        autoComplete={isEmpresa ? "off" : "email"}
-      />
+        {isEmpresa ? (
+          <Controller
+            name="cnpj"
+            control={control}
+            render={({ field }) => (
+              <AuthField
+                id="cnpj"
+                label="CNPJ"
+                type="text"
+                placeholder="00.000.000/0000-00"
+                icon={Mail}
+                autoComplete="off"
+                inputMode="numeric"
+                maxLength={18}
+                name={field.name}
+                ref={field.ref}
+                value={field.value}
+                onBlur={field.onBlur}
+                onChange={(e) => field.onChange(formatCnpj(e.target.value))}
+                error={errors.cnpj?.message}
+              />
+            )}
+          />
+        ) : (
+          <AuthField
+            id="email"
+            label="E-mail corporativo"
+            type="email"
+            placeholder="seu.nome@empresa"
+            icon={Mail}
+            autoComplete="email"
+            error={errors.email?.message}
+            {...register("email")}
+          />
+        )}
 
-    <AuthField
-      id="senha"
-      name="password"
-      label="Senha"
-      type="password"
-      placeholder="Sua senha"
-      icon={Lock}
-      autoComplete="current-password"
-      />
-
+        <AuthField
+          id="senha"
+          label="Senha"
+          type="password"
+          placeholder="Sua senha"
+          icon={Lock}
+          autoComplete="current-password"
+          error={errors.senha?.message}
+          {...register("senha")}
+        />
       </div>
 
       <p className="rounded-lg bg-gray px-3 py-4 text-xs font-semibold leading-relaxed text-muted-foreground">
         Ao continuar, confirmo que concordo com os{" "}
-        <Link
-          href="/termos"
-          className="text-blue-600 underline"
-        >
+        <Link href="/termos" className="text-blue-600 underline">
           Termos de Uso
         </Link>{" "}
         e a Política de{" "}
-        <Link
-          href="/privacidade"
-          className="text-blue-600 underline"
-        >
+        <Link href="/privacidade" className="text-blue-600 underline">
           Segurança e Privacidade
         </Link>{" "}
         da plataforma.
@@ -122,7 +127,19 @@ export function LoginForm() {
 
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2">
-          <Checkbox id="lembrar" name="remember" />
+          <Controller
+            name="remember"
+            control={control}
+            render={({ field }) => (
+              <Checkbox
+                id="lembrar"
+                name={field.name}
+                ref={field.ref}
+                checked={field.value}
+                onCheckedChange={(checked) => field.onChange(checked)}
+              />
+            )}
+          />
 
           <Label
             htmlFor="lembrar"
@@ -142,10 +159,19 @@ export function LoginForm() {
 
       <div className="flex justify-end">
         <Button
-          type="button"
+          type="submit"
+          disabled={isSubmitting}
+          aria-busy={isSubmitting}
           className="h-11 w-full cursor-pointer rounded-lg bg-blue-600 text-primary-foreground hover:bg-blue-600/90 sm:w-44"
         >
-          Continuar
+          {isSubmitting ? (
+            <>
+              <LoaderCircle className="animate-spin" aria-hidden="true" />
+              Enviando...
+            </>
+          ) : (
+            "Continuar"
+          )}
         </Button>
       </div>
     </form>
