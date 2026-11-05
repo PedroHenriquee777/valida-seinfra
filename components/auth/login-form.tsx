@@ -15,9 +15,36 @@ import { loginSchema, type LoginFormData } from "@/schemas/auth.schema";
 
 
 export function LoginForm() {
-  const [perfil, setPerfil] = useState<"empresa" | "setor">("empresa");
-  const isEmpresa = perfil === "empresa";
-  return (
+  const {
+    register,
+    control,
+    handleSubmit,
+    setValue,
+    clearErrors,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      perfil: "empresa",
+      cnpj: "",
+      email: "",
+      senha: "",
+      remember: false,
+    },
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
     <form
       id="login-form"
       className="mt-8 flex flex-col gap-6"
