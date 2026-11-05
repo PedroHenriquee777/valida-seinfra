@@ -1,14 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { Lock, Mail } from "lucide-react";
-import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { LoaderCircle, Lock, Mail } from "lucide-react";
+import { Controller, useForm, useWatch } from "react-hook-form";
 
 import { AuthField } from "@/components/auth/auth-field";
 import { ProfileTabs } from "@/components/auth/profile-tabs";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { formatCnpj } from "@/lib/formatters";
+import { loginSchema, type LoginFormData } from "@/schemas/auth.schema";
 
 
 export function LoginForm() {
