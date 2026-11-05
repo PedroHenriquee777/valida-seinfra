@@ -4,14 +4,12 @@ import type { LucideIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-type AuthFieldProps = {
-    id: string;
-    name: string;
-    label: string;
-    type: "text" | "email" | "password";
-    placeholder: string;
-    icon: LucideIcon;
-    autoComplete?: string;
+type AuthFieldProps = Omit<ComponentProps<"input">, "id" | "type"> & {
+  id: string;
+  label: string;
+  type: "text" | "email" | "password";
+  icon: LucideIcon;
+  error?: string;
 };
 
 export function AuthField({
