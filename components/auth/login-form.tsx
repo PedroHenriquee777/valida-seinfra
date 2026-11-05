@@ -39,8 +39,21 @@ export function LoginForm() {
     setValue("perfil", novoPerfil);
     clearErrors();
   }
+  async function onSubmit(data: LoginFormData) {
+    // TEMPORÁRIO: simula o envio para o estado de loading ficar visível.
+    // Remover junto com o console.log quando integrar a API.
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
+    const credencial =
+      data.perfil === "empresa" ? { cnpj: data.cnpj } : { email: data.email };
 
+    console.log({
+      perfil: data.perfil,
+      ...credencial,
+      senha: data.senha,
+      remember: data.remember,
+    });
+  }
 
 
 
