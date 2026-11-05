@@ -40,7 +40,7 @@ export function AuthField({
           id={id}
           aria-invalid={Boolean(error)}
           aria-describedby={error ? errorId : undefined}
-          {...inputProps}
+          {...inputsProps}
           className="h-13 rounded-lg border-input !bg-primary-foreground pl-9 text-foreground placeholder:text-muted-foreground"
         />
       </div>
