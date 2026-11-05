@@ -32,6 +32,13 @@ export function LoginForm() {
       remember: false,
     },
   });
+  const perfil = useWatch({ control, name: "perfil" });
+  const isEmpresa = perfil === "empresa";
+
+  function handleChangePerfil(novoPerfil: LoginFormData["perfil"]) {
+    setValue("perfil", novoPerfil);
+    clearErrors();
+  }
 
 
 
