@@ -1,3 +1,4 @@
+import type { ComponentProps } from "react";
 import type { LucideIcon } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
