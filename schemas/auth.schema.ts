@@ -11,21 +11,32 @@ export const loginSchema = z
       .string()
       .min(1, "Informe a senha")
       .min(8, "A senha deve ter pelo menos 8 caracteres"),
-    remember: z.boolean(),
+    lembrar: z.boolean(),
   })
   .superRefine((data, ctx) => {
+    // ctx.addIssue centralizado
+    const addError = (campo: "cnpj" | "email", mensagem: string) => {
+      ctx.addIssue({ code: "custom", path: [campo], message: mensagem });
+    };
+
     if (data.perfil === "empresa") {
-      if (!data.cnpj.trim()) {
-        ctx.addIssue({ code: "custom", path: ["cnpj"], message: "Informe o CNPJ" });
-      } else if (!isValidCnpj(data.cnpj)) {
-        ctx.addIssue({ code: "custom", path: ["cnpj"], message: "CNPJ inválido" });
+      const cnpj = data.cnpj.trim();
+
+      if (!cnpj) {
+        addError("cnpj", "Informe o CNPJ");
+      } else if (!isValidCnpj(cnpj)) {
+        addError("cnpj", "CNPJ inválido");
       }
       return;
     }
-    if (!data.email.trim()) {
-      ctx.addIssue({ code: "custom", path: ["email"], message: "Informe o e-mail corporativo" });
-    } else if (!z.email().safeParse(data.email).success) {
-      ctx.addIssue({ code: "custom", path: ["email"], message: "E-mail inválido" });
+
+    const email = data.email.trim();
+
+    if (!email) {
+      addError("email", "Informe o e-mail corporativo");
+    } else if (!z.email().safeParse(email).success) {
+      addError("email", "E-mail inválido");
     }
   });
+
 export type LoginFormData = z.infer<typeof loginSchema>;
