@@ -30,7 +30,7 @@ export function LoginForm() {
       cnpj: "",
       email: "",
       senha: "",
-      remember: false,
+      lembrar: false,
     },
   });
   const perfil = useWatch({ control, name: "perfil" });
