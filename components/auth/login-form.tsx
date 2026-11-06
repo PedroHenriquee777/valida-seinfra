@@ -13,17 +13,18 @@ import { Label } from "@/components/ui/label";
 import { formatCnpj } from "@/lib/formatters";
 import { loginSchema, type LoginFormData } from "@/schemas/auth.schema";
 
-
 export function LoginForm() {
   const {
-    register,
-    control,
-    handleSubmit,
-    setValue,
-    clearErrors,
-    formState: { errors, isSubmitting },
+    register: registrar,
+    control: controle,
+    handleSubmit: tratarEnvio,
+    setValue: definirValor,
+    clearErrors: limparErros,
+    formState: { errors: erros, isSubmitting: enviando },
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
+    // Erros só aparecem (e só são recalculados) ao clicar em "Continuar".
+    mode: "onSubmit",
     reValidateMode: "onSubmit",
     defaultValues: {
       perfil: "empresa",
@@ -33,44 +34,46 @@ export function LoginForm() {
       lembrar: false,
     },
   });
-  const perfil = useWatch({ control, name: "perfil" });
-  const isEmpresa = perfil === "empresa";
 
-  function handleChangePerfil(novoPerfil: LoginFormData["perfil"]) {
-    setValue("perfil", novoPerfil);
-    clearErrors();
+  const perfil = useWatch({ control: controle, name: "perfil" });
+  const ehEmpresa = perfil === "empresa";
+
+  function trocarPerfil(novoPerfil: LoginFormData["perfil"]) {
+    definirValor("perfil", novoPerfil);
+    limparErros();
   }
-  async function onSubmit(data: LoginFormData) {
+
+  async function aoEnviar(dados: LoginFormData) {
     // TEMPORÁRIO: simula o envio para o estado de loading ficar visível.
     // Remover junto com o console.log quando integrar a API.
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolver) => setTimeout(resolver, 1000));
 
     const credencial =
-      data.perfil === "empresa" ? { cnpj: data.cnpj } : { email: data.email };
+      dados.perfil === "empresa" ? { cnpj: dados.cnpj } : { email: dados.email };
 
     console.log({
-      perfil: data.perfil,
+      perfil: dados.perfil,
       ...credencial,
-      senha: data.senha,
-      remember: data.remember,
+      senha: dados.senha,
+      lembrar: dados.lembrar,
     });
   }
 
-  return(
- <form
+  return (
+    <form
       id="login-form"
       noValidate
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={tratarEnvio(aoEnviar)}
       className="mt-8 flex flex-col gap-6"
     >
-      <ProfileTabs perfil={perfil} setPerfil={handleChangePerfil} />
+      <ProfileTabs perfil={perfil} setPerfil={trocarPerfil} />
 
       <div className="flex flex-col gap-5">
-        {isEmpresa ? (
+        {ehEmpresa ? (
           <Controller
             name="cnpj"
-            control={control}
-            render={({ field }) => (
+            control={controle}
+            render={({ field: campo }) => (
               <AuthField
                 id="cnpj"
                 label="CNPJ"
@@ -80,12 +83,12 @@ export function LoginForm() {
                 autoComplete="off"
                 inputMode="numeric"
                 maxLength={18}
-                name={field.name}
-                ref={field.ref}
-                value={field.value}
-                onBlur={field.onBlur}
-                onChange={(e) => field.onChange(formatCnpj(e.target.value))}
-                error={errors.cnpj?.message}
+                name={campo.name}
+                ref={campo.ref}
+                value={campo.value}
+                onBlur={campo.onBlur}
+                onChange={(evento) => campo.onChange(formatCnpj(evento.target.value))}
+                error={erros.cnpj?.message}
               />
             )}
           />
@@ -97,8 +100,8 @@ export function LoginForm() {
             placeholder="seu.nome@empresa"
             icon={Mail}
             autoComplete="email"
-            error={errors.email?.message}
-            {...register("email")}
+            error={erros.email?.message}
+            {...registrar("email")}
           />
         )}
 
@@ -109,8 +112,8 @@ export function LoginForm() {
           placeholder="Sua senha"
           icon={Lock}
           autoComplete="current-password"
-          error={errors.senha?.message}
-          {...register("senha")}
+          error={erros.senha?.message}
+          {...registrar("senha")}
         />
       </div>
 
@@ -129,15 +132,15 @@ export function LoginForm() {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <Controller
-            name="remember"
-            control={control}
-            render={({ field }) => (
+            name="lembrar"
+            control={controle}
+            render={({ field: campo }) => (
               <Checkbox
                 id="lembrar"
-                name={field.name}
-                ref={field.ref}
-                checked={field.value}
-                onCheckedChange={(checked) => field.onChange(checked)}
+                name={campo.name}
+                ref={campo.ref}
+                checked={campo.value}
+                onCheckedChange={(marcado) => campo.onChange(marcado)}
               />
             )}
           />
@@ -161,11 +164,11 @@ export function LoginForm() {
       <div className="flex justify-end">
         <Button
           type="submit"
-          disabled={isSubmitting}
-          aria-busy={isSubmitting}
+          disabled={enviando}
+          aria-busy={enviando}
           className="h-11 w-full cursor-pointer rounded-lg bg-blue-600 text-primary-foreground hover:bg-blue-600/90 sm:w-44"
         >
-          {isSubmitting ? (
+          {enviando ? (
             <>
               <LoaderCircle className="animate-spin" aria-hidden="true" />
               Enviando...
