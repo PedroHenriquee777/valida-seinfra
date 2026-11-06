@@ -24,6 +24,7 @@ export function LoginForm() {
     formState: { errors, isSubmitting },
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
+    reValidateMode: "onSubmit",
     defaultValues: {
       perfil: "empresa",
       cnpj: "",
