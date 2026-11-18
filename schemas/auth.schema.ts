@@ -40,3 +40,13 @@ export const loginSchema = z
   });
 
 export type LoginFormData = z.infer<typeof loginSchema>;
+
+export const identificacaoSchema = z.object({
+  email: z
+    .string()
+    .trim()
+    .min(1, "Informe o e-mail")
+    .refine((valor) => z.email().safeParse(valor).success, "E-mail inválido"),
+});
+
+export type IdentificacaoFormData = z.infer<typeof identificacaoSchema>;
