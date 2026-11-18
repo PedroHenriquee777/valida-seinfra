@@ -21,6 +21,31 @@ export function EtapaForm({
     onVoltar,
     onSubmit,
     children,
-}: EtapaFormProps){
+}: EtapaFormProps) {
+    return (
+    <>
+      <h1 className="text-3xl font-bold text-primary">{titulo}</h1>
 
+      <p className="mt-4 text-lg font-semibold text-primary">{descricao}</p>
+
+      <form
+        id={id}
+        noValidate
+        onSubmit={onSubmit}
+        className="mt-8 flex flex-col gap-6"
+      >
+        <div className="flex flex-col gap-5">{children}</div>
+        
+        <div className="flex justify-center gap-4">
+          <Button
+            type="button"
+            variant="outline"
+            disabled={enviando}
+            onClick={onVoltar}
+            className="h-11 flex-1 cursor-pointer rounded-lg border-blue-600 text-blue-600 hover:text-blue-600 sm:w-44 sm:flex-none"
+          >
+            <ChevronLeft aria-hidden="true" />
+            Voltar
+          </Button>
+    );
 };
