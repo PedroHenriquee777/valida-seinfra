@@ -43,19 +43,19 @@ export function LoginForm() {
     limparErros();
   }
 
-  async function aoEnviar(dados: LoginFormData) {
+  async function aoEnviar(data: LoginFormData) {
     // TEMPORÁRIO: simula o envio para o estado de loading ficar visível.
     // Remover junto com o console.log quando integrar a API.
     await new Promise((resolver) => setTimeout(resolver, 1000));
 
     const credencial =
-      dados.perfil === "empresa" ? { cnpj: dados.cnpj } : { email: dados.email };
+      data.perfil === "empresa" ? { cnpj: data.cnpj } : { email: data.email };
 
     console.log({
-      perfil: dados.perfil,
+      perfil: data.perfil,
       ...credencial,
-      senha: dados.senha,
-      lembrar: dados.lembrar,
+      senha: data.senha,
+      lembrar: data.lembrar,
     });
   }
 
