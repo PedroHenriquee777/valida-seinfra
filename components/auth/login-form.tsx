@@ -36,7 +36,7 @@ export function LoginForm() {
   });
 
   const perfil = useWatch({ control: controle, name: "perfil" });
-  const ehEmpresa = perfil === "empresa";
+  const condicaoEmpresa = perfil === "empresa";
 
   function trocarPerfil(novoPerfil: LoginFormData["perfil"]) {
     definirValor("perfil", novoPerfil);
@@ -69,7 +69,7 @@ export function LoginForm() {
       <ProfileTabs perfil={perfil} setPerfil={trocarPerfil} />
 
       <div className="flex flex-col gap-5">
-        {ehEmpresa ? (
+        {condicaoEmpresa ? (
           <Controller
             name="cnpj"
             control={controle}
