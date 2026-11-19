@@ -50,3 +50,12 @@ export const identificacaoSchema = z.object({
 });
 
 export type IdentificacaoFormData = z.infer<typeof identificacaoSchema>;
+
+export const codigoSchema = z.object({
+  codigo: z
+    .string()
+    .min(1, "Informe o código")
+    .regex(/^\d{6}$/, "O código deve ter 6 dígitos"),
+});
+
+export type CodigoFormData = z.infer<typeof codigoSchema>;
