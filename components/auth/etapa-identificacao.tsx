@@ -36,3 +36,26 @@ export function EtapaIdentificacao({
     console.log(data);
     onConcluir();
   }
+
+  return (
+    <EtapaForm
+        id = "identificacao-form"
+        titulo = "Recuperação de senha"
+        descricao = "Digite o email para recuperação"
+        enviando = {enviando}
+        onVoltar = {onVoltar}
+        onSubmit = {tratarEnvio(aoEnviar)}
+    >
+        <AuthField
+            id = "email"
+            label = "E-mail"
+            type = "email"
+            placeholder= "seu.nome@gmail.com"
+            icon = { Mail }
+            autoComplete = "email"
+            error = {erros.email?.message}
+            {...registrar("email")}
+        />
+    </EtapaForm>
+  );
+}
