@@ -9,6 +9,7 @@ import {
   novaSenhaSchema,
   type NovaSenhaFormData,
 } from "@/schemas/auth.schema";
+import { Lock } from "lucide-react";
 
 type EtapaNovaSenhaProps = {
   onVoltar: () => void;
@@ -47,6 +48,7 @@ export function EtapaNovaSenha({ onVoltar, onConcluir }: EtapaNovaSenhaProps) {
         label="Senha"
         type="password"
         placeholder="Exemplar123@!"
+        icon={Lock}
         autoComplete="new-password"
         error={erros.senha?.message}
         {...registrar("senha")}
@@ -57,6 +59,7 @@ export function EtapaNovaSenha({ onVoltar, onConcluir }: EtapaNovaSenhaProps) {
         label="Repetir senha"
         type="password"
         placeholder="Sua senha"
+        icon={Lock}
         autoComplete="new-password"
         error={erros.confirmarSenha?.message}
         {...registrar("confirmarSenha")}
