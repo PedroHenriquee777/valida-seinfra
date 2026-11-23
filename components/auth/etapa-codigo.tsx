@@ -31,4 +31,36 @@ export function EtapaCodigo({ onVoltar, onConcluir }: EtapaCodigoProps) {
     console.log(data);
     onConcluir();
     }
+
+    return (
+        <EtapaForm
+            id="codigo-form"
+            titulo="Código de verificação"
+            descricao="Digite o código de verificação"
+            enviando={enviando}
+            onVoltar={onVoltar}
+            onSubmit={tratarEnvio(aoEnviar)}
+        >
+            <Controller
+                name="codigo"
+                control={controle}
+                render={({ field: campo}) => (
+                    <AuthField
+                        id="codigo"
+                        label="Código"
+                        type="text"
+                        placeholder="000000"
+                        autoComplete="one-time-code"
+                        inputMode="numeric"
+                        maxLength={6}
+                        name={campo.name}
+                        ref={campo.ref}
+                        value={campo.value}
+                        onBlur={campo.onBlur}
+                        onChange={(evento) => campo.onChange(formatCodigo(evento.target.value))}
+                    />
+                )}
+            />
+        </EtapaForm>
+    );
 }
