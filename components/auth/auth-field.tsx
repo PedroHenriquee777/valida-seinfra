@@ -3,12 +3,13 @@ import type { LucideIcon } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
 
 type AuthFieldProps = Omit<ComponentProps<"input">, "id" | "type"> & {
   id: string;
   label: string;
   type: "text" | "email" | "password";
-  icon: LucideIcon;
+  icon?: LucideIcon;
   error?: string;
 };
 
