@@ -16,3 +16,18 @@ const ETAPA_ANTERIOR: Record<Etapa, Etapa | null> = {
   codigo: "identificacao",
   "nova-senha": "codigo",
 };
+
+export function RecuperarSenha() {
+  const roteador = useRouter();
+  const [etapa, setEtapa] = useState<Etapa>("identificacao");
+
+  function voltar() {
+    const anterior = ETAPA_ANTERIOR[etapa];
+
+    if (anterior) {
+      setEtapa(anterior);
+      return;
+    }
+
+    roteador.push("/login");
+  }
