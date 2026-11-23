@@ -32,10 +32,12 @@ export function AuthField({
       </Label>
 
       <div className="relative">
-        <Icon
-          aria-hidden="true"
-          className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
-        />
+        {Icon && (
+          <Icon
+            aria-hidden="true"
+            className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+          />
+        )}
 
         <Input
           id={id}
