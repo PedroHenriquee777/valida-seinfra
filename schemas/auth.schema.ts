@@ -66,9 +66,9 @@ export const novaSenhaSchema = z
   .string()
   .min(1, "Informe a nova senha")
   .min(8, "A senha deve ter pelo menos 8 caracteres"),
-  ConfirmarSenha: z.string().min(1, "Repita a senha"),
+  confirmarSenha: z.string().min(1, "Repita a senha"),
 })
-.refine((dados) => dados.senha === dados.ConfirmarSenha, {
+.refine((dados) => dados.senha === dados.confirmarSenha, {
   path: ["confirmarSenha"],
   message: "As senhas não coincidem",
 });
