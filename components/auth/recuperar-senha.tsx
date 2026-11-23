@@ -31,3 +31,43 @@ export function RecuperarSenha() {
 
     roteador.push("/login");
   }
+ return (
+    <>
+      {etapa !== "identificacao" && (
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          onClick={voltar}
+          className="cursor-pointer self-start rounded-md border-blue-600 text-blue-600 hover:text-blue-600"
+        >
+          <ChevronLeft aria-hidden="true" />
+          Voltar
+        </Button>
+      )}
+
+      <div className="mx-auto my-auto w-full max-w-xl py-8">
+        {etapa === "identificacao" && (
+          <EtapaIdentificacao
+            onVoltar={voltar}
+            onConcluir={() => setEtapa("codigo")}
+          />
+        )}
+
+        {etapa === "codigo" && (
+          <EtapaCodigo
+            onVoltar={voltar}
+            onConcluir={() => setEtapa("nova-senha")}
+          />
+        )}
+
+        {etapa === "nova-senha" && (
+          <EtapaNovaSenha
+            onVoltar={voltar}
+            onConcluir={() => roteador.push("/login")}
+          />
+        )}
+      </div>
+    </>
+  );
+}
