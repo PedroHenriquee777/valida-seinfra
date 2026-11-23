@@ -28,8 +28,39 @@ export function EtapaNovaSenha({ onVoltar, onConcluir }: EtapaNovaSenhaProps) {
   });
 
   async function aoEnviar(data: NovaSenhaFormData) {
-    // TEMPORÁRIO: simula o envio. Remover junto com o console.log ao integrar a API.
+    // temporario: simula o envio. remover junto com o console.log ao integrar a API.
     await new Promise((resolver) => setTimeout(resolver, 1000));
     console.log(data);
     onConcluir();
   }
+  return (
+    <EtapaForm
+      id="nova-senha-form"
+      titulo="Nova senha"
+      descricao="Escreva a sua nova senha."
+      enviando={enviando}
+      onVoltar={onVoltar}
+      onSubmit={tratarEnvio(aoEnviar)}
+    >
+      <AuthField
+        id="senha"
+        label="Senha"
+        type="password"
+        placeholder="Exemplar123@!"
+        autoComplete="new-password"
+        error={erros.senha?.message}
+        {...registrar("senha")}
+      />
+
+      <AuthField
+        id="confirmarSenha"
+        label="Repetir senha"
+        type="password"
+        placeholder="Sua senha"
+        autoComplete="new-password"
+        error={erros.confirmarSenha?.message}
+        {...registrar("confirmarSenha")}
+      />
+    </EtapaForm>
+  );
+}
