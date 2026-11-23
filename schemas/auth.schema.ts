@@ -59,3 +59,18 @@ export const codigoSchema = z.object({
 });
 
 export type CodigoFormData = z.infer<typeof codigoSchema>;
+
+export const novaSenhaSchema = z
+.object({
+  senha: z
+  .string()
+  .min(1, "Informe a nova senha")
+  .min(8, "A senha deve ter pelo menos 8 caracteres"),
+  ConfirmarSenha: z.string().min(1, "Repita a senha"),
+})
+.refine((dados) => dados.senha === dados.ConfirmarSenha, {
+  path: ["confirmarSenha"],
+  message: "As senhas não coincidem",
+});
+
+export type NovaSenhaFormData = z.infer<typeof novaSenhaSchema>;
