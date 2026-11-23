@@ -33,7 +33,7 @@ export function RecuperarSenha() {
   }
  return (
     <>
-      {etapa !== "identificacao" && (
+      {etapa === "nova-senha" && (
         <Button
           type="button"
           variant="outline"
