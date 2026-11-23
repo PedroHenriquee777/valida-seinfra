@@ -7,6 +7,7 @@ import { AuthField } from "@/components/auth/auth-field";
 import { EtapaForm } from "@/components/auth/etapa-form";
 import { formatCodigo } from "@/lib/formatters";
 import { codigoSchema, type CodigoFormData } from "@/schemas/auth.schema";
+import { KeyRound } from "lucide-react";
 
 type EtapaCodigoProps = {
     onVoltar: () => void;
@@ -50,6 +51,7 @@ export function EtapaCodigo({ onVoltar, onConcluir }: EtapaCodigoProps) {
                         label="Código"
                         type="text"
                         placeholder="000000"
+                        icon={KeyRound}
                         autoComplete="one-time-code"
                         inputMode="numeric"
                         maxLength={6}
