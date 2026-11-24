@@ -1,68 +1,69 @@
-"use client"
+"use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { KeyRound } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 
 import { AuthField } from "@/components/auth/auth-field";
-import { EtapaForm } from "@/components/auth/etapa-form";
-import { formatCodigo } from "@/lib/formatters";
-import { codigoSchema, type CodigoFormData } from "@/schemas/auth.schema";
-import { KeyRound } from "lucide-react";
+import { StepForm } from "@/components/auth/step-form";
+import { formatCode } from "@/lib/formatters";
+import { codeSchema, type CodeFormData } from "@/schemas/auth.schema";
 
-type EtapaCodigoProps = {
-    onVoltar: () => void;
-    onConcluir: () => void;
+type CodeStepProps = {
+  onBack: () => void;
+  onComplete: () => void;
 };
 
-export function EtapaCodigo({ onVoltar, onConcluir }: EtapaCodigoProps) {
-    const {
-        control: controle,
-        handleSubmit: tratarEnvio,
-        formState: { errors: erros, isSubmitting: enviando },
-    } = useForm<CodigoFormData>({
-        resolver: zodResolver(codigoSchema),
-        mode: "onSubmit",
-        reValidateMode: "onSubmit",
-        defaultValues: { codigo: "" }
-    });
+export function CodeStep({ onBack, onComplete }: CodeStepProps) {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<CodeFormData>({
+    resolver: zodResolver(codeSchema),
+    mode: "onSubmit",
+    reValidateMode: "onSubmit",
+    defaultValues: { code: "" },
+  });
 
-    async function aoEnviar(data: CodigoFormData){
+  async function onSubmit(data: CodeFormData) {
     // temporario: simula o envio. remover junto com o console.log ao integrar a API.
-    await new Promise((resolver) => setTimeout(resolver, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     console.log(data);
-    onConcluir();
-    }
+    onComplete();
+  }
 
-    return (
-        <EtapaForm
-            id="codigo-form"
-            titulo="Código de verificação"
-            descricao="Digite o código de verificação"
-            enviando={enviando}
-            onVoltar={onVoltar}
-            onSubmit={tratarEnvio(aoEnviar)}
-        >
-            <Controller
-                name="codigo"
-                control={controle}
-                render={({ field: campo}) => (
-                    <AuthField
-                        id="codigo"
-                        label="Código"
-                        type="text"
-                        placeholder="000000"
-                        icon={KeyRound}
-                        autoComplete="one-time-code"
-                        inputMode="numeric"
-                        maxLength={6}
-                        name={campo.name}
-                        ref={campo.ref}
-                        value={campo.value}
-                        onBlur={campo.onBlur}
-                        onChange={(evento) => campo.onChange(formatCodigo(evento.target.value))}
-                    />
-                )}
-            />
-        </EtapaForm>
-    );
+  return (
+    <StepForm
+      id="code-form"
+      title="Código de verificação"
+      description="Digite o código de verificação."
+      isSubmitting={isSubmitting}
+      onBack={onBack}
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <Controller
+        name="code"
+        control={control}
+        render={({ field }) => (
+          <AuthField
+            id="code"
+            label="Código"
+            type="text"
+            placeholder="000000"
+            icon={KeyRound}
+            autoComplete="one-time-code"
+            inputMode="numeric"
+            maxLength={6}
+            name={field.name}
+            ref={field.ref}
+            value={field.value}
+            onBlur={field.onBlur}
+            onChange={(event) => field.onChange(formatCode(event.target.value))}
+            error={errors.code?.message}
+          />
+        )}
+      />
+    </StepForm>
+  );
 }
