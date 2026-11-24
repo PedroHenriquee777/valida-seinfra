@@ -41,36 +41,38 @@ export const loginSchema = z
 
 export type LoginFormData = z.infer<typeof loginSchema>;
 
-export const identificacaoSchema = z.object({
+export const emailSchema = z.object({
   email: z
     .string()
     .trim()
     .min(1, "Informe o e-mail")
-    .refine((valor) => z.email().safeParse(valor).success, "E-mail inválido"),
+    .refine((value) => z.email().safeParse(value).success, "E-mail inválido"),
 });
 
-export type IdentificacaoFormData = z.infer<typeof identificacaoSchema>;
+export type EmailFormData = z.infer<typeof emailSchema>;
 
-export const codigoSchema = z.object({
-  codigo: z
+export const codeSchema = z.object({
+  code: z
     .string()
     .min(1, "Informe o código")
     .regex(/^\d{6}$/, "O código deve ter 6 dígitos"),
 });
 
-export type CodigoFormData = z.infer<typeof codigoSchema>;
+export type CodeFormData = z.infer<typeof codeSchema>;
 
-export const novaSenhaSchema = z
-.object({
-  senha: z
-  .string()
-  .min(1, "Informe a nova senha")
-  .min(8, "A senha deve ter pelo menos 8 caracteres"),
-  confirmarSenha: z.string().min(1, "Repita a senha"),
-})
-.refine((dados) => dados.senha === dados.confirmarSenha, {
-  path: ["confirmarSenha"],
-  message: "As senhas não coincidem",
-});
+export const newPasswordSchema = z
+  .object({
+    password: z
+      .string()
+      .min(1, "Informe a nova senha")
+      .min(8, "A senha deve ter pelo menos 8 caracteres"),
+    confirmPassword: z
+      .string()
+      .min(1, "Confirme a mesma senha digitada no campo acima"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    path: ["confirmPassword"],
+    message: "A confirmação precisa ser igual à senha do primeiro campo",
+  });
 
-export type NovaSenhaFormData = z.infer<typeof novaSenhaSchema>;
+export type NewPasswordFormData = z.infer<typeof newPasswordSchema>;
