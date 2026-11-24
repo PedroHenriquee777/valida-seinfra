@@ -11,6 +11,6 @@ export function formatCnpj(value: string): string {
     .replace(/(\d{4})(\d)/, "$1-$2");
 }
 
-export function formatCodigo(value: string): string {
+export function formatCode(value: string): string {
   return onlyDigits(value).slice(0, 6);
 }
