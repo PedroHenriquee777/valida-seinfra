@@ -3,56 +3,49 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import { EtapaCodigo } from "@/components/auth/etapa-codigo";
-import { EtapaIdentificacao } from "@/components/auth/etapa-identificacao";
-import { EtapaNovaSenha } from "@/components/auth/etapa-nova-senha";
+import { CodeStep } from "@/components/auth/code-step";
+import { EmailStep } from "@/components/auth/email-step";
+import { NewPasswordStep } from "@/components/auth/new-password-step";
 
-type Etapa = "identificacao" | "codigo" | "nova-senha";
+type Step = "email" | "code" | "new-password";
 
-const ETAPA_ANTERIOR: Record<Etapa, Etapa | null> = {
-  identificacao: null,
-  codigo: "identificacao",
-  "nova-senha": "codigo",
+const PREVIOUS_STEP: Record<Step, Step | null> = {
+  email: null,
+  code: "email",
+  "new-password": "code",
 };
 
-export function RecuperarSenha() {
-  const roteador = useRouter();
-  const [etapa, setEtapa] = useState<Etapa>("identificacao");
+export function RecoveryPassword() {
+  const router = useRouter();
+  const [step, setStep] = useState<Step>("email");
 
-  function voltar() {
-    const anterior = ETAPA_ANTERIOR[etapa];
+  function goBack() {
+    const previous = PREVIOUS_STEP[step];
 
-    if (anterior) {
-      setEtapa(anterior);
+    if (previous) {
+      setStep(previous);
       return;
     }
 
-    roteador.push("/login");
+    router.push("/login");
   }
- return (
-    <>
-      <div className="mx-auto my-auto w-full max-w-xl py-8">
-        {etapa === "identificacao" && (
-          <EtapaIdentificacao
-            onVoltar={voltar}
-            onConcluir={() => setEtapa("codigo")}
-          />
-        )}
 
-        {etapa === "codigo" && (
-          <EtapaCodigo
-            onVoltar={voltar}
-            onConcluir={() => setEtapa("nova-senha")}
-          />
-        )}
+  return (
+    <div className="mx-auto my-auto w-full max-w-xl py-6 sm:py-8">
+      {step === "email" && (
+        <EmailStep onBack={goBack} onComplete={() => setStep("code")} />
+      )}
 
-        {etapa === "nova-senha" && (
-          <EtapaNovaSenha
-            onVoltar={voltar}
-            onConcluir={() => roteador.push("/login")}
-          />
-        )}
-      </div>
-    </>
+      {step === "code" && (
+        <CodeStep onBack={goBack} onComplete={() => setStep("new-password")} />
+      )}
+
+      {step === "new-password" && (
+        <NewPasswordStep
+          onBack={goBack}
+          onComplete={() => router.push("/login")}
+        />
+      )}
+    </div>
   );
 }
