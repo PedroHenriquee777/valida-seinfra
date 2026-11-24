@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 
-import { RecuperarSenha } from "@/components/auth/recuperar-senha";
+import { RecoveryPassword } from "@/components/auth/recovery-password";
 import { AuthLayout } from "@/components/layout/auth-layout";
 
 export const metadata: Metadata = {
   title: "Recuperação de senha | ValidaSEINFRA",
 };
 
-export default function EsqueciSenhaPage() {
+export default function ForgotPasswordPage() {
   return (
     <AuthLayout>
-      <RecuperarSenha />
+      <RecoveryPassword />
     </AuthLayout>
   );
 }
