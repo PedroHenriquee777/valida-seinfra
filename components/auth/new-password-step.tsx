@@ -1,69 +1,70 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Lock } from "lucide-react";
 import { useForm } from "react-hook-form";
 
 import { AuthField } from "@/components/auth/auth-field";
-import { EtapaForm } from "@/components/auth/etapa-form";
+import { StepForm } from "@/components/auth/step-form";
 import {
-  novaSenhaSchema,
-  type NovaSenhaFormData,
+  newPasswordSchema,
+  type NewPasswordFormData,
 } from "@/schemas/auth.schema";
-import { Lock } from "lucide-react";
 
-type EtapaNovaSenhaProps = {
-  onVoltar: () => void;
-  onConcluir: () => void;
+type NewPasswordStepProps = {
+  onBack: () => void;
+  onComplete: () => void;
 };
 
-export function EtapaNovaSenha({ onVoltar, onConcluir }: EtapaNovaSenhaProps) {
+export function NewPasswordStep({ onBack, onComplete }: NewPasswordStepProps) {
   const {
-    register: registrar,
-    handleSubmit: tratarEnvio,
-    formState: { errors: erros, isSubmitting: enviando },
-  } = useForm<NovaSenhaFormData>({
-    resolver: zodResolver(novaSenhaSchema),
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<NewPasswordFormData>({
+    resolver: zodResolver(newPasswordSchema),
     mode: "onSubmit",
     reValidateMode: "onSubmit",
-    defaultValues: { senha: "", confirmarSenha: "" },
+    defaultValues: { password: "", confirmPassword: "" },
   });
 
-  async function aoEnviar(data: NovaSenhaFormData) {
+  async function onSubmit(data: NewPasswordFormData) {
     // temporario: simula o envio. remover junto com o console.log ao integrar a API.
-    await new Promise((resolver) => setTimeout(resolver, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     console.log(data);
-    onConcluir();
+    onComplete();
   }
+
   return (
-    <EtapaForm
-      id="nova-senha-form"
-      titulo="Nova senha"
-      descricao="Escreva a sua nova senha."
-      enviando={enviando}
-      onVoltar={onVoltar}
-      onSubmit={tratarEnvio(aoEnviar)}
+    <StepForm
+      id="new-password-form"
+      title="Nova senha"
+      description="Escreva a sua nova senha."
+      isSubmitting={isSubmitting}
+      onBack={onBack}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <AuthField
-        id="senha"
+        id="password"
         label="Senha"
         type="password"
         placeholder="Exemplar123@!"
         icon={Lock}
         autoComplete="new-password"
-        error={erros.senha?.message}
-        {...registrar("senha")}
+        error={errors.password?.message}
+        {...register("password")}
       />
 
       <AuthField
-        id="confirmarSenha"
-        label="Repetir senha"
+        id="confirm-password"
+        label="Confirmar senha"
         type="password"
         placeholder="Sua senha"
         icon={Lock}
         autoComplete="new-password"
-        error={erros.confirmarSenha?.message}
-        {...registrar("confirmarSenha")}
+        error={errors.confirmPassword?.message}
+        {...register("confirmPassword")}
       />
-    </EtapaForm>
+    </StepForm>
   );
 }
