@@ -10,11 +10,13 @@ import { formatCode } from "@/lib/formatters";
 import { codeSchema, type CodeFormData } from "@/schemas/auth.schema";
 
 type CodeStepProps = {
+  defaultCode: string;
+  onCodeChange: (code: string) => void; 
   onBack: () => void;
   onComplete: () => void;
 };
 
-export function CodeStep({ onBack, onComplete }: CodeStepProps) {
+export function CodeStep({defaultCode, onCodeChange, onBack, onComplete }: CodeStepProps) {
   const {
     control,
     handleSubmit,
@@ -23,7 +25,7 @@ export function CodeStep({ onBack, onComplete }: CodeStepProps) {
     resolver: zodResolver(codeSchema),
     mode: "onSubmit",
     reValidateMode: "onSubmit",
-    defaultValues: { code: "" },
+    defaultValues: { code: defaultCode },
   });
 
   async function onSubmit(data: CodeFormData) {
@@ -59,7 +61,11 @@ export function CodeStep({ onBack, onComplete }: CodeStepProps) {
             ref={field.ref}
             value={field.value}
             onBlur={field.onBlur}
-            onChange={(event) => field.onChange(formatCode(event.target.value))}
+            onChange={(event) => {
+              const formattedCode = formatCode(event.target.value);
+              field.onChange(formattedCode);
+              onCodeChange(formattedCode);
+            }}
             error={errors.code?.message}
           />
         )}
