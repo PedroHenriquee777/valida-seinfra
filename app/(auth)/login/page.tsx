@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function PaginaInicial () {
   return (
      <AuthLayout>
-      <div className="mx-auto my-auto w-full max-w-xl">
+      <div className="mx-auto w-full max-w-xl md:my-auto">
         <h1 className="text-3xl font-bold text-primary">
           Acessar plataforma
         </h1>
