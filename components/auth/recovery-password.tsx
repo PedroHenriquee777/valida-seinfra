@@ -18,7 +18,8 @@ const PREVIOUS_STEP: Record<Step, Step | null> = {
 export function RecoveryPassword() {
   const router = useRouter();
   const [step, setStep] = useState<Step>("email");
-
+  const [code, setCode] = useState("");
+  
   function goBack() {
     const previous = PREVIOUS_STEP[step];
 
@@ -37,7 +38,11 @@ export function RecoveryPassword() {
       )}
 
       {step === "code" && (
-        <CodeStep onBack={goBack} onComplete={() => setStep("new-password")} />
+        <CodeStep
+          defaultCode={code}
+          onCodeChange={setCode}
+          onBack={goBack}
+          onComplete={() => setStep("new-password")} />
       )}
 
       {step === "new-password" && (
