@@ -31,7 +31,7 @@ export function RecoveryPassword() {
   }
 
   return (
-    <div className="mx-auto my-auto w-full max-w-xl py-6 sm:py-8">
+    <div className="mx-auto w-full max-w-xl md:my-auto">
       {step === "email" && (
         <EmailStep onBack={goBack} onComplete={() => setStep("code")} />
       )}
