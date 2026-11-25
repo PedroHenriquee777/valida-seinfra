@@ -40,3 +40,39 @@ export const loginSchema = z
   });
 
 export type LoginFormData = z.infer<typeof loginSchema>;
+
+export const emailSchema = z.object({
+  email: z
+    .string()
+    .trim()
+    .min(1, "Informe o e-mail")
+    .refine((value) => z.email().safeParse(value).success, "E-mail inválido"),
+});
+
+export type EmailFormData = z.infer<typeof emailSchema>;
+
+export const codeSchema = z.object({
+  code: z
+    .string()
+    .min(1, "Informe o código")
+    .regex(/^\d{6}$/, "O código deve ter 6 dígitos"),
+});
+
+export type CodeFormData = z.infer<typeof codeSchema>;
+
+export const newPasswordSchema = z
+  .object({
+    password: z
+      .string()
+      .min(1, "Informe a nova senha")
+      .min(8, "A senha deve ter pelo menos 8 caracteres"),
+    confirmPassword: z
+      .string()
+      .min(1, "Confirme a mesma senha digitada no campo acima"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    path: ["confirmPassword"],
+    message: "A confirmação precisa ser igual à senha do primeiro campo",
+  });
+
+export type NewPasswordFormData = z.infer<typeof newPasswordSchema>;

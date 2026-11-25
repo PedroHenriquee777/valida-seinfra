@@ -10,3 +10,7 @@ export function formatCnpj(value: string): string {
     .replace(/\.(\d{3})(\d)/, ".$1/$2")
     .replace(/(\d{4})(\d)/, "$1-$2");
 }
+
+export function formatCode(value: string): string {
+  return onlyDigits(value).slice(0, 6);
+}
