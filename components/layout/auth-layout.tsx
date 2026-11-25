@@ -4,7 +4,7 @@ import Image from "next/image";
 export function AuthLayout({ children }: { children: ReactNode }) {
   return (
     <main className="min-h-dvh w-full bg-background">
-      <section className="grid min-h-dvh w-full grid-cols-1 grid-row-[auto_1fr] md:grid-cols-2 md:grid-rows-1">
+      <section className="grid min-h-dvh w-full grid-cols-1 grid-rows-[auto_1fr] md:grid-cols-2 md:grid-rows-1">
         <aside className="flex flex-col justify-center bg-gradient-to-b from-sidebar to-sidebar-gradient-end px-6 py-5 sm:p-10 md:p-12 lg:p-20">
           <div className="ml-1 sm:ml-2">
             <div className="flex items-center gap-3">
