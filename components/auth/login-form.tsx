@@ -14,11 +14,15 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { formatCnpj } from "@/lib/formatters";
 import { loginSchema, type LoginFormData } from "@/schemas/auth.schema";
-import { LoadingScreen } from "@/components/shared/loading-screen"
+import {
+  FADE_DURATION_MS,
+  LoadingScreen,
+} from "@/components/shared/loading-screen";
 
 export function LoginForm() {
   const router = useRouter();
   const [isRedirecting, setIsRedirecting] = useState(false);
+  const [isLeaving, setIsLeaving] = useState(false);
   const {
     register: registrar,
     control: controle,
@@ -63,6 +67,11 @@ export function LoginForm() {
       senha: data.senha,
       lembrar: data.lembrar,
     });
+
+    // Espera o anel sumir antes de trocar de tela. Manter após integrar a API.
+    setIsLeaving(true);
+    await new Promise((resolver) => setTimeout(resolver, FADE_DURATION_MS));
+
     router.replace("/dashboard");
   }
 
@@ -186,7 +195,7 @@ export function LoginForm() {
           )}
         </Button>
       </div>
-      {isRedirecting && <LoadingScreen />}
+      {isRedirecting && <LoadingScreen isLeaving={isLeaving} />}
     </form>
   );
 }
