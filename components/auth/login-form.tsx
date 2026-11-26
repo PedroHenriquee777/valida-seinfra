@@ -4,6 +4,8 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoaderCircle, Lock, Mail } from "lucide-react";
 import { Controller, useForm, useWatch } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 import { AuthField } from "@/components/auth/auth-field";
 import { ProfileTabs } from "@/components/auth/profile-tabs";
@@ -12,8 +14,11 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { formatCnpj } from "@/lib/formatters";
 import { loginSchema, type LoginFormData } from "@/schemas/auth.schema";
+import { LoadingScreen } from "@/components/shared/loading-screen"
 
 export function LoginForm() {
+  const router = useRouter();
+  const [isRedirecting, setIsRedirecting] = useState(false);
   const {
     register: registrar,
     control: controle,
@@ -44,9 +49,10 @@ export function LoginForm() {
   }
 
   async function aoEnviar(data: LoginFormData) {
+    setIsRedirecting(true);
     // TEMPORÁRIO: simula o envio para o estado de loading ficar visível.
     // Remover junto com o console.log quando integrar a API.
-    await new Promise((resolver) => setTimeout(resolver, 1000));
+    await new Promise((resolver) => setTimeout(resolver, 2000));
 
     const credencial =
       data.perfil === "empresa" ? { cnpj: data.cnpj } : { email: data.email };
@@ -57,9 +63,11 @@ export function LoginForm() {
       senha: data.senha,
       lembrar: data.lembrar,
     });
+    router.replace("/dashboard");
   }
 
   return (
+    
     <form
       id="login-form"
       noValidate
@@ -178,6 +186,7 @@ export function LoginForm() {
           )}
         </Button>
       </div>
+      {isRedirecting && <LoadingScreen />}
     </form>
   );
 }
